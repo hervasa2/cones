@@ -4,6 +4,6 @@ module cones
 
     using LinearAlgebra
     using Plots
-    include("generate_cone.jl")
+    include("functions.jl")
 
 end # module
