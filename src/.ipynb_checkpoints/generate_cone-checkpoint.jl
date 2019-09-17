@@ -1,14 +1,17 @@
 
 
 magnitude(track) = sqrt(Transpose(track)*track)
+export magnitude
 
 function plot_point(point; markersize = 2)
     scatter([point[1]],[point[2]],[point[3]], markersize = markersize)
 end
+export plot_point
 
 function plot_point!(point; markersize = 2)
     scatter!([point[1]],[point[2]],[point[3]], markersize = markersize)
 end
+export plot_point!
 
 function generate_cone(axis, vertex, opening_angle, height; 
         draw = false, style = "parametric", palette = :magma, poly = 32, height_mode = "relative", 
@@ -102,6 +105,8 @@ function generate_cone(axis, vertex, opening_angle, height;
     if !draw return x_cone, y_cone, z_cone end
     if draw plot_point!(vertex, markersize = vertexsize) end
 end
+export generate_cone            
+
 function generate_cone!(axis, vertex, opening_angle, height; 
         draw = "true", style = "parametric", palette = :magma, poly = 32, height_mode = "relative", 
         circles = 500, start = 0, phase = 0, colors = 20, phaseZaxis = 0, phaseYaxis = 0, vertexsize = 2)
@@ -186,3 +191,4 @@ function generate_cone!(axis, vertex, opening_angle, height;
     end
     if draw plot_point!(vertex, markersize = vertexsize) end
 end
+export generate_cone!
