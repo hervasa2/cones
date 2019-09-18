@@ -196,29 +196,29 @@ function generate_cone!(axis, vertex, opening_angle, height;
 end
 export generate_cone!
 
-function generate_rand_cone()
+function generate_rand_cone(;distortion = 1)
     generate_cone([rand(Uniform(-1,1)),
     rand(Uniform(-1,1)),rand(Uniform(-1,1))], 
     [0,0,0], rand(Normal(0,pi/2)), 1, 
     poly = rand(append!(collect(2:6), collect(64:64))),
     circles = 300, 
-    phase = rand(Normal(0,pi/100)), 
-    phaseYaxis = rand(Normal(0,pi/100)), 
-    phaseZaxis = rand(Normal(0,pi/100)),  
+    phase = rand(Normal(0,distortion*pi/100)), 
+    phaseYaxis = rand(Normal(0,distortion*pi/100)), 
+    phaseZaxis = rand(Normal(0,distortion*pi/100)),  
     palette = rand([:viridis,:magma,:ice,:phase]), 
     colors = 25, vertexsize = 0, draw = true)
 end
 export generate_rand_cone
                         
-function generate_rand_cone!()
+function generate_rand_cone!(;distortion = 1)
     generate_cone!([rand(Uniform(-1,1)),
     rand(Uniform(-1,1)),rand(Uniform(-1,1))], 
     [0,0,0], rand(Normal(0,pi/2)), 1, 
     poly = rand(append!(collect(2:6), collect(64:64))),
     circles = 300, 
-    phase = rand(Normal(0,pi/100)), 
-    phaseYaxis = rand(Normal(0,pi/100)), 
-    phaseZaxis = rand(Normal(0,pi/100)),  
+    phase = rand(Normal(0,distortion*pi/100)), 
+    phaseYaxis = rand(Normal(0,distortion*pi/100)), 
+    phaseZaxis = rand(Normal(0,distortion*pi/100)),  
     palette = rand([:viridis,:magma,:ice,:phase]), 
     colors = 25, vertexsize = 0, draw = true)
 end
