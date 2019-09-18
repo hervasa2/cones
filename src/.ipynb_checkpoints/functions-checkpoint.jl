@@ -14,23 +14,11 @@ end
 export plot_point!
 
 function generate_cone(axis, vertex, opening_angle, height; 
-        draw = false, style = "parametric", palette = :magma, poly = 32, 
-        height_mode = "relative", rand_cone = false, 
+        draw = false, style = "parametric", palette = :magma, poly = 32, height_mode = "relative", 
         circles = 500, start = 0, phase = 0, colors = 25, phaseZaxis = 0, phaseYaxis = 0, vertexsize = 2)
     
     if height_mode == "relative"
         height = height*magnitude(axis)
-    end
-    if rand_cone
-        axis = [rand(Uniform(-1,1)), rand(Uniform(-1,1)),rand(Uniform(-1,1))]
-        vertex = [0,0,0]
-        height = 1
-        poly = rand(append!(collect(2:6), collect(64:64)))
-        circles = 300 
-        phase = rand(Normal(0,pi/100)) 
-        phaseYaxis = rand(Normal(0,pi/100)) 
-        phaseZaxis = rand(Normal(0,pi/100))  
-        palette = rand([:viridis,:magma,:ice,:phase])
     end
     step = (height-start)/circles
     lines = height/step + 1
@@ -121,24 +109,13 @@ end
 export generate_cone            
 
 function generate_cone!(axis, vertex, opening_angle, height; 
-        draw = "true", style = "parametric", palette = :magma, poly = 32, 
-        height_mode = "relative", rand_cone = false, 
+        draw = "true", style = "parametric", palette = :magma, poly = 32, height_mode = "relative", 
         circles = 500, start = 0, phase = 0, colors = 20, phaseZaxis = 0, phaseYaxis = 0, vertexsize = 2)
                 
     if height_mode == "relative"
         height = height*magnitude(axis)
     end
-    if rand_cone
-        axis = [rand(Uniform(-1,1)), rand(Uniform(-1,1)),rand(Uniform(-1,1))]
-        vertex = [0,0,0]
-        height = 1
-        poly = rand(append!(collect(2:6), collect(64:64)))
-        circles = 300 
-        phase = rand(Normal(0,pi/100)) 
-        phaseYaxis = rand(Normal(0,pi/100)) 
-        phaseZaxis = rand(Normal(0,pi/100))  
-        palette = rand([:viridis,:magma,:ice,:phase])
-    end
+
     step = (height-start)/circles
     lines = height/step + 1
     
@@ -218,3 +195,31 @@ function generate_cone!(axis, vertex, opening_angle, height;
     if draw plot_point!(vertex, markersize = vertexsize) end
 end
 export generate_cone!
+
+function generate_rand_cone()
+    generate_cone([rand(Uniform(-1,1)),
+    rand(Uniform(-1,1)),rand(Uniform(-1,1))], 
+    [0,0,0], rand(Normal(0,pi/2)), 1, 
+    poly = rand(append!(collect(2:6), collect(64:64))),
+    circles = 300, 
+    phase = rand(Normal(0,pi/100)), 
+    phaseYaxis = rand(Normal(0,pi/100)), 
+    phaseZaxis = rand(Normal(0,pi/100)),  
+    palette = rand([:viridis,:magma,:ice,:phase]), 
+    colors = 25, vertexsize = 0, draw = true)
+end
+export generate_rand_cone
+                        
+function generate_rand_cone!()
+    generate_cone!([rand(Uniform(-1,1)),
+    rand(Uniform(-1,1)),rand(Uniform(-1,1))], 
+    [0,0,0], rand(Normal(0,pi/2)), 1, 
+    poly = rand(append!(collect(2:6), collect(64:64))),
+    circles = 300, 
+    phase = rand(Normal(0,pi/100)), 
+    phaseYaxis = rand(Normal(0,pi/100)), 
+    phaseZaxis = rand(Normal(0,pi/100)),  
+    palette = rand([:viridis,:magma,:ice,:phase]), 
+    colors = 25, vertexsize = 0, draw = true)
+end
+export generate_rand_cone!
