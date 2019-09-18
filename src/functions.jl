@@ -14,10 +14,21 @@ end
 export plot_point!
 
 function generate_cone(axis, vertex, opening_angle, height; 
-        draw = false, style = "parametric", palette = :magma, poly = 32, height_mode = "relative", 
-        circles = 500, start = 0, phase = 0, colors = 20, phaseZaxis = 0, phaseYaxis = 0, vertexsize = 2)
+        draw = false, style = "parametric", palette = :magma, poly = 32, height_mode = "relative", rand = false, 
+        circles = 500, start = 0, phase = 0, colors = 25, phaseZaxis = 0, phaseYaxis = 0, vertexsize = 2)
     if height_mode == "relative"
         height = height*magnitude(axis)
+    end
+    if rand
+        axis = [rand(Uniform(-1,1)), rand(Uniform(-1,1)),rand(Uniform(-1,1))]
+        vertex = [0,0,0]
+        height = 1
+        poly = rand(append!(collect(2:6), collect(64:64)))
+        circles = 300 
+        phase = rand(Normal(0,pi/100)) 
+        phaseYaxis = rand(Normal(0,pi/100)) 
+        phaseZaxis = rand(Normal(0,pi/100))  
+        palette = rand([:viridis,:magma,:ice,:phase])
     end
     step = (height-start)/circles
     lines = height/step + 1
@@ -108,10 +119,21 @@ end
 export generate_cone            
 
 function generate_cone!(axis, vertex, opening_angle, height; 
-        draw = "true", style = "parametric", palette = :magma, poly = 32, height_mode = "relative", 
+        draw = "true", style = "parametric", palette = :magma, poly = 32, height_mode = "relative", rand = false, 
         circles = 500, start = 0, phase = 0, colors = 20, phaseZaxis = 0, phaseYaxis = 0, vertexsize = 2)
     if height_mode == "relative"
         height = height*magnitude(axis)
+    end
+    if rand
+        axis = [rand(Uniform(-1,1)), rand(Uniform(-1,1)),rand(Uniform(-1,1))]
+        vertex = [0,0,0]
+        height = 1
+        poly = rand(append!(collect(2:6), collect(64:64)))
+        circles = 300 
+        phase = rand(Normal(0,pi/100)) 
+        phaseYaxis = rand(Normal(0,pi/100)) 
+        phaseZaxis = rand(Normal(0,pi/100))  
+        palette = rand([:viridis,:magma,:ice,:phase])
     end
     step = (height-start)/circles
     lines = height/step + 1
