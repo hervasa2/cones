@@ -14,12 +14,14 @@ end
 export plot_point!
 
 function generate_cone(axis, vertex, opening_angle, height; 
-        draw = false, style = "parametric", palette = :magma, poly = 32, height_mode = "relative", rand = false, 
+        draw = false, style = "parametric", palette = :magma, poly = 32, 
+        height_mode = "relative", rand_cone = false, 
         circles = 500, start = 0, phase = 0, colors = 25, phaseZaxis = 0, phaseYaxis = 0, vertexsize = 2)
+    
     if height_mode == "relative"
         height = height*magnitude(axis)
     end
-    if rand
+    if rand_cone
         axis = [rand(Uniform(-1,1)), rand(Uniform(-1,1)),rand(Uniform(-1,1))]
         vertex = [0,0,0]
         height = 1
@@ -119,12 +121,14 @@ end
 export generate_cone            
 
 function generate_cone!(axis, vertex, opening_angle, height; 
-        draw = "true", style = "parametric", palette = :magma, poly = 32, height_mode = "relative", rand = false, 
+        draw = "true", style = "parametric", palette = :magma, poly = 32, 
+        height_mode = "relative", rand_cone = false, 
         circles = 500, start = 0, phase = 0, colors = 20, phaseZaxis = 0, phaseYaxis = 0, vertexsize = 2)
+                
     if height_mode == "relative"
         height = height*magnitude(axis)
     end
-    if rand
+    if rand_cone
         axis = [rand(Uniform(-1,1)), rand(Uniform(-1,1)),rand(Uniform(-1,1))]
         vertex = [0,0,0]
         height = 1
