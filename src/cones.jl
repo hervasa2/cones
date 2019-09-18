@@ -4,6 +4,8 @@ module cones
 
     using LinearAlgebra
     using Plots
+    using Random
+    using Distributions
     include("functions.jl")
 
 end # module
