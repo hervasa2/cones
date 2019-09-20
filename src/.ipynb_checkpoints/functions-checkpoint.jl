@@ -99,10 +99,10 @@ function generate_cone(axis, vertex, opening_angle, height;
             append!(y_cone, y_t[i])
             append!(z_cone, z_t[i])
         end
-        if(style == "parametric" && draw )
+        if style == "parametric" && draw 
             plot!(x_t ,y_t ,z_t, color = cgrad(palette)[convert(Int64, floor(icirc/(lines/colors)))+1])
         end
-        if(style == "cartesian" && draw )
+        if (style == "cartesian" || "grid") && draw 
             scatter!(x_t ,y_t ,z_t, markersize = 0.1, color = "black")
         end
         icirc = icirc + 1;
@@ -194,10 +194,10 @@ function generate_cone!(axis, vertex, opening_angle, height;
             y_t[i] = transformed_point[2]
             z_t[i] = transformed_point[3]
         end
-        if(style == "parametric" && draw )
+        if style == "parametric" && draw 
             plot!(x_t ,y_t ,z_t, color = cgrad(palette)[convert(Int64, floor(icirc/(lines/colors)))+1])
         end
-        if(style == "cartesian" && draw )
+        if style == "cartesian" && draw 
             scatter!(x_t ,y_t ,z_t, markersize = 0.1, color = "black")
         end
         icirc = icirc + 1;
