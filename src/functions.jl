@@ -79,7 +79,7 @@ function generate_cone(axis, vertex, opening_angle, height;
             poly = 2*pi*r/grid_unit
         end
                     
-        if style == "parametric" || style = "grid"
+        if style == "parametric" || style == "grid"
             β = collect(0+accumulated_phase:2*pi/poly:2*pi+accumulated_phase)
             append!(x,r*cos.(β))
             append!(y,r*sin.(β))
@@ -171,7 +171,13 @@ function generate_cone!(axis, vertex, opening_angle, height;
             append!(y,-y)
         end
         accumulated_phase = phase*icirc
-        if(style == "parametric")
+                    
+        grid_unit = (height/circles)/cos(α)
+        if style == "grid"
+            poly = 2*pi*r/grid_unit
+        end
+                    
+        if style == "parametric" || style == "grid"
             β = collect(0+accumulated_phase:pi/(poly/2):2*pi+accumulated_phase)
             append!(x,r*cos.(β))
             append!(y,r*sin.(β))
