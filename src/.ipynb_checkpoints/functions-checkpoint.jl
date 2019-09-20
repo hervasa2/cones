@@ -102,7 +102,7 @@ function generate_cone(axis, vertex, opening_angle, height;
         if style == "parametric" && draw 
             plot!(x_t ,y_t ,z_t, color = cgrad(palette)[convert(Int64, floor(icirc/(lines/colors)))+1])
         end
-        if (style == "cartesian" || "grid") && draw 
+        if (style == "cartesian" || style ==  "grid") && draw 
             scatter!(x_t ,y_t ,z_t, markersize = 0.1, color = "black")
         end
         icirc = icirc + 1;
@@ -162,7 +162,7 @@ function generate_cone!(axis, vertex, opening_angle, height;
         x = zeros(0)
         y = zeros(0)
         z = zeros(0)
-        if(style == "cartesian")
+        if style == "cartesian"
             xstep = 2*r_max/100
             append!(x,collect(-r:xstep:r))
             append!(y,sqrt.(r^2 .- x.^2))
@@ -178,7 +178,7 @@ function generate_cone!(axis, vertex, opening_angle, height;
         end
                     
         if style == "parametric" || style == "grid"
-            β = collect(0+accumulated_phase:pi/(poly/2):2*pi+accumulated_phase)
+            β = collect(0+accumulated_phase:2*pi/poly:2*pi+accumulated_phase)
             append!(x,r*cos.(β))
             append!(y,r*sin.(β))
             append!(z,zeros(length(x)))
@@ -197,7 +197,7 @@ function generate_cone!(axis, vertex, opening_angle, height;
         if style == "parametric" && draw 
             plot!(x_t ,y_t ,z_t, color = cgrad(palette)[convert(Int64, floor(icirc/(lines/colors)))+1])
         end
-        if style == "cartesian" && draw 
+        if (style == "cartesian" || style ==  "grid") && draw 
             scatter!(x_t ,y_t ,z_t, markersize = 0.1, color = "black")
         end
         icirc = icirc + 1;
