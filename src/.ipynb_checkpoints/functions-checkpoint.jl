@@ -13,6 +13,7 @@ function plot_point!(point; markersize = 2)
 end
 export plot_point!
 
+#opening angle is from cone axis. 0 < opening_angle < pi
 function generate_cone(axis, vertex, opening_angle, height; 
         draw = false, style = "parametric", palette = :magma, poly = 32, height_mode = "relative", 
         circles = 500, start = 0, phase = 0, colors = 25, phaseZaxis = 0, phaseYaxis = 0, vertexsize = 2)
@@ -63,7 +64,7 @@ function generate_cone(axis, vertex, opening_angle, height;
         x = zeros(0)
         y = zeros(0)
         z = zeros(0)
-        if(style == "cartesian")
+        if style == "cartesian"
             xstep = 2*r_max/100
             append!(x,collect(-r:xstep:r))
             append!(y,sqrt.(r^2 .- x.^2))
@@ -72,8 +73,14 @@ function generate_cone(axis, vertex, opening_angle, height;
             append!(y,-y)
         end
         accumulated_phase = phase*icirc
-        if(style == "parametric")
-            β = collect(0+accumulated_phase:pi/(poly/2):2*pi+accumulated_phase)
+                    
+        grid_unit = (height/circles)/cos(α)
+        if style == "grid"
+            poly = 2*pi*r/grid_unit
+        end
+                    
+        if style == "parametric" || style = "grid"
+            β = collect(0+accumulated_phase:2*pi/poly:2*pi+accumulated_phase)
             append!(x,r*cos.(β))
             append!(y,r*sin.(β))
             append!(z,zeros(length(x)))
