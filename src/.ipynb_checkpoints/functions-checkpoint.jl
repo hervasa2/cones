@@ -36,6 +36,10 @@ function generate_cone(axis, vertex, opening_angle, height;
     x_cone = zeros(0)
     y_cone = zeros(0)
     z_cone = zeros(0)
+    append!(x_cone, vertex[1])
+    append!(y_cone, vertex[2])
+    append!(z_cone, vertex[3])
+    
     for circ in start:step:height
         
         axis = Rz(phaseZaxis)*Ry(phaseYaxis)*axis
@@ -64,6 +68,7 @@ function generate_cone(axis, vertex, opening_angle, height;
         x = zeros(0)
         y = zeros(0)
         z = zeros(0)
+                    
         if style == "cartesian"
             xstep = 2*r_max/100
             append!(x,collect(-r:xstep:r))
@@ -74,7 +79,7 @@ function generate_cone(axis, vertex, opening_angle, height;
         end
         accumulated_phase = phase*icirc
                     
-        grid_unit = (height/circles)/cos(α)
+        grid_unit = step/cos(α)
         if style == "grid"
             poly = 2*pi*r/grid_unit
         end
