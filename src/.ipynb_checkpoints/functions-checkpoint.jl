@@ -36,9 +36,6 @@ function generate_cone(axis, vertex, opening_angle, height;
     x_cone = zeros(0)
     y_cone = zeros(0)
     z_cone = zeros(0)
-    append!(x_cone, vertex[1])
-    append!(y_cone, vertex[2])
-    append!(z_cone, vertex[3])
     
     for circ in start:step:height
         
