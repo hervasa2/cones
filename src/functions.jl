@@ -84,7 +84,8 @@ function generate_cone(axis, vertex, opening_angle, height;
             if r != 0
                 poly = 2*pi*r/grid_unit
             else
-                poly = 1                           
+                poly = 1
+            end
         end
                     
         if style == "parametric" || style == "grid"
@@ -185,7 +186,8 @@ function generate_cone!(axis, vertex, opening_angle, height;
             if r != 0
                 poly = 2*pi*r/grid_unit
             else
-                poly = 1                           
+                poly = 1
+            end
         end
                     
         if style == "parametric" || style == "grid"
