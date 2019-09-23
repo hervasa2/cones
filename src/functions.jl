@@ -79,7 +79,7 @@ function generate_cone(axis, vertex, opening_angle, height;
         grid_unit = step/cos(α)
         if style == "grid"
             if r != 0
-                poly = 2*pi*r/grid_unit
+                poly = floor(2*pi*r/grid_unit)
             else
                 poly = 1
             end
@@ -181,7 +181,7 @@ function generate_cone!(axis, vertex, opening_angle, height;
         grid_unit = (height/circles)/cos(α)
         if style == "grid"
             if r != 0
-                poly = 2*pi*r/grid_unit
+                poly = floor(2*pi*r/grid_unit)
             else
                 poly = 1
             end
