@@ -87,8 +87,8 @@ function generate_cone(axis, vertex, opening_angle, height;
                     
         if style == "parametric" || style == "grid"
             β = collect(0+accumulated_phase:2*pi/poly:2*pi+accumulated_phase)
-            append!(x,r*cos.(2*β))
-            append!(y,r*sin.(3*β))
+            append!(x,r*cos.(3*β))
+            append!(y,r*sin.(2*β))
             append!(z,zeros(length(x)))
         end
         
